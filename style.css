@@ -452,14 +452,81 @@ nav a.active { color: #C8B273; }
     max-width: 650px;
 }
 
+/* --- ENHANCED RESPONSIVE CONTROLS FOR YOUR STYLE.CSS --- */
+
+/* Base setup for the buttons container */
 .footer-buttons-group {
     display: flex;
-    flex-direction: row; /* Keeps the two buttons neatly side-by-side right beneath the paragraph */
+    flex-direction: row;      /* Desktop default: side-by-side */
     gap: 1.5rem;
     align-items: center;
     width: auto;
+    flex-wrap: wrap;          /* Gracefully wraps elements if text gets tight */
 }
 
+/* Base structural rule for your interactive phone button */
+.btn-phone {
+    position: relative;
+    min-width: 220px;         /* Keeps a locked minimum size on desktop */
+    transition: all 0.3s ease;
+}
+
+.btn-phone::before {
+    content: "Connect via Phone";
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.btn-phone:hover::before {
+    content: attr(data-phone);
+    letter-spacing: 1px;
+}
+
+
+/* ==========================================================================
+   GLOBAL MOBILE RESPONSIVE MEDIA QUERY (Triggered at 768px and below)
+   ========================================================================== */
+@media (max-width: 768px) {
+    
+    /* 1. Optimize the main banner spacing for thumb scrolling */
+    .footer-banner {
+        padding: 2.5rem 1.5rem; /* Adds secure inner padding so text doesn't hit the screen edges */
+        gap: 2rem;
+    }
+
+    /* 2. Fix the font sizing dynamically so text doesn't overflow wrap weirdly */
+    .footer-text h3 {
+        font-size: 1.4rem;      /* Slices scale slightly down for smaller screen matrices */
+    }
+    
+    .footer-text p {
+        font-size: 0.95rem;     /* Highly readable body scaling for mobile displays */
+        line-height: 1.5;
+        max-width: 100%;        /* Forces paragraph to occupy safe total device width */
+    }
+
+    /* 3. Re-orient the button layout system vertically */
+    .footer-buttons-group {
+        flex-direction: column; /* Force stacks the buttons perfectly on top of each other */
+        align-items: stretch;   /* Automatically stretches both buttons to equal width */
+        width: 100%;            /* Spans full horizontal container bounds */
+        gap: 1rem;              /* Tighter spacing built explicitly for touch targets */
+    }
+
+    /* 4. Normalize individual contact buttons */
+    .btn-contact {
+        width: 100%;            /* Forces full width utility */
+        text-align: center;
+        padding: 0.85rem 0;     /* Slightly taller tap zone built for human thumbs */
+        box-sizing: border-box; /* Includes padding inside width calculations perfectly */
+    }
+
+    /* 5. Master fix for the interactive phone button on mobile */
+    .btn-phone {
+        min-width: 0;           /* Disables desktop constraints so it scales naturally */
+        width: 100%;
+    }
+}
 /* Retains mobile responsive adaptations safely */
 @media (max-width: 768px) {
     .footer-buttons-group {
@@ -760,23 +827,9 @@ nav a.active { color: #C8B273; }
 /* Arranges both interactive buttons beautifully side-by-side */
 
 /* Base button properties for the phone framework */
-.btn-phone {
-    position: relative;
-    min-width: 220px; /* Locks structural width so the box doesn't resize when numbers appear */
-}
 
 /* Injects the baseline text naturally */
-.btn-phone::before {
-    content: "Connect via Phone";
-    display: block;
-    transition: all 0.3s ease;
-}
 
 /* INTERACTIVE SWAP MECHANISM:
    When hovered, reads the exact string inside 'data-phone' and injects it 
    instantly, shifting the styling variables smoothly to your premium gold themes */
-.btn-phone:hover::before {
-    content: attr(data-phone);
-    letter-spacing: 1px; /* Slightly lower tracking so the digits fit perfectly */
-}
-
