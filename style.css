@@ -122,7 +122,7 @@ nav a.active { color: #C8B273; }
     position: relative;
     width: 100%;
 }
-.origin-tag { font-size: 4rem; text-transform: uppercase; color: #C8B273; letter-spacing: 3px; margin-bottom: 2rem; display: block; font-weight: 500; }
+.origin-tag { font-size: 3.5rem; text-transform: uppercase; color: #C8B273; letter-spacing: 3px; margin-bottom: 2rem; display: block; font-weight: 500; }
 /* --- UPDATE THESE SECTIONS IN YOUR STYLE.CSS --- */
 
 .profile-quote-grid {
