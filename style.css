@@ -521,9 +521,9 @@ nav a.active { color: #C8B273; }
     
     .logo {
         /* 1. Smash all previous fixed circular constraints */
-        width: auto !important;             
-        height: auto !important;            
-        max-width: 90vw !important;  /* Prevents it from scaling larger than the phone's screen view */
+        width: auto;             
+        height: auto ;            
+        max-width: 90vw;  /* Prevents it from scaling larger than the phone's screen view */
         
         /* 2. Change the layout structure entirely */
         display: inline-flex !important;
@@ -536,7 +536,7 @@ nav a.active { color: #C8B273; }
         
         /* 4. Force text rendering stability */
         white-space: nowrap !important;     /* Absolute block: denies the browser permission to wrap your name */
-        font-size: 14px !important;         /* Scales text to a crisp size built for mobile views */
+        font-size: 8vw !important;         /* Scales text to a crisp size built for mobile views */
         letter-spacing: 0.5px !important;
     }
 
