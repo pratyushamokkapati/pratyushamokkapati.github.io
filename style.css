@@ -536,7 +536,7 @@ nav a.active { color: #C8B273; }
         
         /* 4. Force text rendering stability */
         white-space: nowrap !important;     /* Absolute block: denies the browser permission to wrap your name */
-        font-size: 8vw !important;         /* Scales text to a crisp size built for mobile views */
+        font-size: 6vw !important;         /* Scales text to a crisp size built for mobile views */
         letter-spacing: 0.5px !important;
     }
 
