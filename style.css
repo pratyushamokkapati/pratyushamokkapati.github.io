@@ -516,18 +516,34 @@ nav a.active { color: #C8B273; }
     /* --- ADD THIS INSIDE YOUR @media (max-width: 768px) BLOCK IN STYLE.CSS --- *
     
     /* MASTER FIX FOR THE LOGO TEXT OVERFLOW */
+    /* --- COMPREHENSIVE OVERRIDE SYSTEM FOR MOBILE LOGO --- */
+
+    
     .logo {
-        width: auto;             /* Disables the restrictive 68px width constraint */
-        height: auto;            /* Allows natural height boundary */
-        min-height: 48px;        /* Maintains a clean structural footprint */
-        padding: 0.4rem 1.2rem;  /* Converts the layout into an elegant horizontal luxury pill shape */
-        border-radius: 30px;     /* Smoothly rounds the corners of the adaptive pill shape */
-        font-size: 0.9rem;       /* Subtly scales down font size so it sits perfectly on one line */
-        white-space: nowrap;     /* ABSOLUTE FORCE: Prevents your name from breaking into two lines */
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.4rem;
+        /* 1. Smash all previous fixed circular constraints */
+        width: auto !important;             
+        height: auto !important;            
+        max-width: 90vw !important;  /* Prevents it from scaling larger than the phone's screen view */
+        
+        /* 2. Change the layout structure entirely */
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        
+        /* 3. Transform into a beautiful premium horizontal pill */
+        padding: 6px 16px !important;       
+        border-radius: 50px !important;     
+        
+        /* 4. Force text rendering stability */
+        white-space: nowrap !important;     /* Absolute block: denies the browser permission to wrap your name */
+        font-size: 14px !important;         /* Scales text to a crisp size built for mobile views */
+        letter-spacing: 0.5px !important;
+    }
+
+    /* Keep the icon scaled proportionately right next to it */
+    .logo-icon, .logo span {
+        font-size: 12px !important;
+        display: inline-block !important;
     }
 
     .logo-icon {
