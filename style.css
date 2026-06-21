@@ -1,0 +1,782 @@
+/* --- RESET & BASE STYLES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #e0e0e0;
+    background: #070708;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    line-height: 1.6;
+}
+
+/* --- THE LIQUID OVERLAY CANVAS --- */
+#revealCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+    opacity: 0; /* Keeps the raw white canvas pixels hidden from direct view */
+    filter: blur(45px) contrast(25); 
+    background: transparent;
+    pointer-events: none;
+}
+
+/* --- THE GOLDEN BACKGROUND STREAKS --- */
+body::before, body::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(80px);
+    opacity: 0.12;
+    border-radius: 50%;
+}
+body::before { top: -10%; right: -5%; width: 600px; height: 400px; background: linear-gradient(45deg, #C8B273, #aa7c11); }
+body::after { top: 45%; left: -10%; width: 700px; height: 250px; background: linear-gradient(120deg, #aa7c11, #f3e5ab, transparent); }
+
+.gold-line-accent {
+    position: absolute;
+    top: 0;
+    right: 15%;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.2) 20%, rgba(212, 175, 55, 0.05) 80%, transparent);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* --- CONTAINER --- */
+/* --- UPDATE THESE SECTIONS IN YOUR STYLE.CSS --- */
+
+header {
+    position: fixed;        /* Keeps the navigation bar still in sight on scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 2rem;   /* Adjusted padding for fixed layout */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;           /* Floating high above all content layers */
+    border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+    
+    /* Adds a luxury blurred backing so content passing underneath reads cleanly */
+    background: rgba(7, 7, 8, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Fixes spacing inside the wrapper so the main page layout doesn't clip underneath the fixed header */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 7.5rem 0.1rem 0 0.1rem; /* Added top padding to push content down below the header */
+    position: relative;
+    z-index: 2;
+}
+
+/* Cleans up the hyperlink properties on the new logo button container */
+.logo-link {
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.03); /* Light hover pop for premium micro-interaction feel */
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;               
+    height: 55px;
+    border-radius: 50%;        
+    border: 2px solid #C8B273; 
+    
+    background: linear-gradient(90deg, #ffffff, #C8B273);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+}
+nav a { color: #a0a0a0; text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-left: 2rem; }
+nav a.active { color: #C8B273; }
+
+/* --- HERO CONTAINMENT & QUOTE SYSTEM --- */
+.hero-container {
+    padding: 0.5rem 0 0.5rem 0;
+    position: relative;
+    width: 100%;
+}
+.origin-tag { font-size: 4rem; text-transform: uppercase; color: #C8B273; letter-spacing: 3px; margin-bottom: 2rem; display: block; font-weight: 500; }
+/* --- UPDATE THESE SECTIONS IN YOUR STYLE.CSS --- */
+
+.profile-quote-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr; /* 1.4 parts text space, 1 part image space */
+    gap: 3rem;                        /* Premium luxury whitespace gutter padding */
+    align-items: stretch;             /* Forces both boxes to have identical visual height */
+    margin-bottom: 4rem;
+    width: 100%;
+    background-color: #070708;
+}
+
+.hero-interactive-viewport {
+    position: relative;
+    width: 100%;
+    margin-bottom: 0;                 /* Removed margin bottom to let the grid rule heights stretch */
+    overflow: hidden; 
+    border-radius: 4px;
+    display: flex;
+}
+
+.quote-interactive-wrapper {
+    width: 100%;
+    padding: 3.5rem 3rem; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;          /* Centers your typography rows vertically inside the box */
+}
+
+.profile-image-box {
+    width: 100%;
+    height: 100%;                     /* Fills out the grid track dimensions completely */
+    background-color: #121216;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 8px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+/* Responsive breakpoint to drop them back to stacking beautifully on mobile screens */
+@media (max-width: 900px) {
+    .profile-quote-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* Base default state settings */
+.base-layer {
+    position: relative;
+    z-index: 1;
+    background: #0d0d11; /* Dark luxury layout box background baseline */
+    border: 1px solid rgba(255, 215, 0, 0.05);
+}
+.base-layer .quote-line { color: #ffffff; }
+.base-layer .highlight-gold { color: #C8B273; }
+
+/* Inverted hover state settings (revealed strictly under the active mask trail) */
+.invert-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+    display: block;
+    
+    /* THE GOLD LIQUID FILL: 
+       When the mask opens, this color floods the background area */
+    background: #C8B273; 
+}
+
+/* Forces ALL text inside the gold liquid background to turn crisp, solid black */
+.invert-layer .global-black-text {
+    color: #070708; 
+}
+.invert-layer .global-white-text {
+    color: #ffffff; 
+}
+
+/* Clean profile grid adjustment to ensure everything aligns cleanly with the new outer padding block */
+/* --- COMPONENT LEVEL ABSOLUTE ALIGNMENT GRID --- */
+
+.quote-text-wrap .quote-line {
+    font-size: 4.5vw;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+/* Color declarations for Default State */
+.base-layer .quote-line { color: #ffffff; }
+.base-layer .highlight-gold { color: rgb(212, 175, 55); }
+
+/* Color declarations for Masked/Inverted State */
+.invert-layer .highlight-gold { color: rgb(212, 175, 55); }
+
+/* --- PROFILE CONTAINER --- */
+.profile-photo-fallback { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0%) contrast(1.1); display: block; }
+
+/* --- DETAIL METADATA --- */
+.sub-hero-details { margin-top: 2rem; }
+.emlyon-title { font-size: 1.5rem; font-weight: 400; color: #ffffff; margin-bottom: 1rem; }
+.school-label { display: block; font-size: 1.1rem; color: #a0a0a5; font-weight: 300; }
+.hero-description { font-size: 1.05rem; color: #b0b0b5; max-width: 700px; font-weight: 300; }
+.target-tag { display: inline-block; margin-top: 1.5rem; padding: 0.4rem 1rem; border: 1px solid rgba(212, 175, 55, 0.4); background: rgba(212, 175, 55, 0.05); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: #f3e5ab; }
+
+/* --- PROJECTS --- */
+.section-title { font-size: 1.8rem; margin: 5rem 0 2.5rem 0; text-transform: uppercase; font-family: 'Cinzel', serif;}
+/* --- REPLACE THE PROJECTS SECTION STYLES IN YOUR STYLE.CSS --- */
+
+.section-title {
+    font-size: 1.8rem;
+    margin: 5rem 0 2.5rem 0;
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 1px;
+    background-color: #c8b273;
+}
+
+/* --- REPLACE THE PROJECTS SECTION STYLES IN YOUR STYLE.CSS --- */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    width: 100%;
+}
+
+/* 3D PERSPECTIVE CONTAINER */
+.project-card-wrapper {
+    background-color: transparent;
+    perspective: 1200px; /* Enhanced depth perspective */
+    height: 380px;        
+}
+
+/* THE ROTATING INTERNAL WRAPPER */
+.project-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); 
+    transform-style: preserve-3d; /* Forces children to live in 3D space */
+}
+
+/* Trigger the Y-Axis Rotation */
+.project-card-wrapper:hover .project-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* STRUCTURAL SEGREGATION FOR CARD FACES */
+.card-front, .card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* HARD LOCK BACKFACE VISIBILITY:
+       This prevents the front face from showing up when flipped, 
+       and prevents the back face video from leaking onto the front. */
+    -webkit-backface-visibility: hidden !important; 
+    backface-visibility: hidden !important;
+    
+    transform-style: preserve-3d;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* FRONT FACE APPEARANCE (Visible by default) */
+.card-front {
+    background: rgba(18, 18, 22, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-left: 3px solid #c8b273;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2; /* Sits on top initially */
+    transform: rotateY(0deg); /* Explicitly set base face angle */
+}
+
+.project-meta {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: #c8b273;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.8rem;
+}
+
+.card-front h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+.card-front p {
+    color: #a0a0a5;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+.tech-badges-wrap {
+    display: block;
+}
+
+.tech-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    font-size: 0.75rem;
+    color: #ffffff;
+    margin-right: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* BACK FACE APPEARANCE (Revealed strictly on hover rotation) */
+.card-back {
+    background: #000000;
+    border: 1px solid #c8b273;   
+    z-index: 1;
+    
+    /* Pre-rotate the back face 180deg so it flips right-side up 
+       when the parent inner container spins around! */
+    transform: rotateY(180deg); 
+}
+
+/* Video configuration crop constraints */
+.card-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+/* Audio control frame formatting rules */
+.audio-control-overlay {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: rgba(7, 7, 8, 0.75);
+    border: 1px solid #c8b273;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 10;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.audio-control-overlay:hover {
+    background: #c8b273;
+}
+
+.audio-control-overlay:hover .audio-icon {
+    color: #070708;
+}
+
+.audio-icon {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Video scaling framework rules */
+.card-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crops video beautifully to edge boundaries without distortion */
+    display: block;
+}
+
+@media (max-width: 900px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.project-meta { font-size: 2rem; text-transform: uppercase; color: #C8B273; margin-bottom: 0.8rem; }
+.project-card h3 { font-size: 1.4rem; margin-bottom: 1rem; font-weight: 400; }
+.project-card p { color: #a0a0a5; font-size: 0.95rem; margin-bottom: 1.5rem; }
+.tech-badge { display: inline-block; background: rgba(255, 255, 255, 0.05); padding: 0.2rem 0.6rem; font-size: 0.75rem; margin-right: 0.5rem; color: #ffffff; }
+
+/* --- FOOTER --- */
+/* --- REPLACE THESE BLOCKS IN YOUR STYLE.CSS --- */
+
+.footer-banner {
+    margin: 6rem 0 4rem 0;
+    padding: 3rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    
+    /* SHIFT TO VERTICAL COLUMN FLOW:
+       This stack forces all elements inside the footer to drop underneath 
+       each other sequentially instead of laying out side-by-side. */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligns all text and buttons beautifully to the left margin */
+    gap: 2.5rem;             /* Creates premium luxury breathing room between text and buttons */
+}
+
+.footer-text h3 {
+    font-family: 'Cinzel', serif;
+    margin-bottom: 0.5rem;
+    font-size: 1.6rem;
+    color: #ffffff;
+}
+
+.footer-text p {
+    color: #a0a0a5;
+    font-size: 1.05rem;
+    max-width: 650px;
+}
+
+.footer-buttons-group {
+    display: flex;
+    flex-direction: row; /* Keeps the two buttons neatly side-by-side right beneath the paragraph */
+    gap: 1.5rem;
+    align-items: center;
+    width: auto;
+}
+
+/* Retains mobile responsive adaptations safely */
+@media (max-width: 768px) {
+    .footer-buttons-group {
+        flex-direction: column; /* Stacks the two buttons on top of each other on smaller viewports */
+        align-items: flex-start;
+        width: 100%;
+    }
+    .btn-contact {
+        width: 100%;
+        text-align: center;
+    }
+}.btn-contact { background: transparent; color: #ffffff; border: 1px solid #C8B273; padding: 0.8rem 2rem; text-transform: uppercase; cursor: pointer;}
+.btn-contact:hover { background: #C8B273; color: #000000; }
+
+/* --- ADD THIS TO YOUR STYLE.CSS --- */
+
+.experience-section {
+    padding: 5rem 0 2rem 0;
+    width: 100%;
+    position: relative;
+}
+
+.experience-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.experience-card {
+    background: rgba(18, 18, 22, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+    padding: 2.5rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.experience-card:hover {
+    border-color: rgba(255, 215, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.exp-header-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.company-logo-frame {
+    width: 120px;
+    height: 60px;
+    background: #141311;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.company-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.exp-meta-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.company-name {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: #c8b273;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.role-title {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.exp-timeline {
+    font-size: 0.9rem;
+    color: #8a8a93;
+    font-weight: 300;
+}
+
+.view-exp-toggle {
+    margin-top: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffffff;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.experience-card:hover .view-exp-toggle {
+    color: #c8b273;
+}
+
+.toggle-arrow {
+    transition: transform 0.3s ease;
+}
+
+.experience-card.active .toggle-arrow {
+    transform: rotate(90deg); /* Spins arrow downwards when expanded */
+}
+
+/* EXPANDABLE HOVER SLIDER DRAWER PANEL ENGINE */
+.exp-drawer-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), margin-top 0.5s ease;
+}
+
+/* Target class injected smoothly via JavaScript engine */
+.experience-card.active .exp-drawer-panel {
+    max-height: 300px; /* Provides ample architectural clearance for your text */
+    margin-top: 1.5rem;
+}
+
+.drawer-paragraph {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #b5b5ba;
+    font-weight: 300;
+    border-left: 1px solid #c8b273;
+    padding-left: 1.5rem;
+}
+
+/* Ensure font color values translate inversion matrix flawlessly under the liquid cursor trail */
+.invert-layer .role-title,
+.invert-state-layer .role-title { color: #070708 !important; }
+.invert-layer .exp-timeline,
+.invert-state-layer .exp-timeline { color: #333338 !important; }
+.invert-layer .drawer-paragraph,
+.invert-state-layer .drawer-paragraph { color: #070708 !important; border-left-color: #070708 !important; }
+.invert-layer .view-exp-toggle,
+.invert-state-layer .view-exp-toggle { color: #070708 !important; }
+
+@media (max-width: 768px) {
+    .exp-header-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+}
+
+/* --- ADD THIS TO YOUR STYLE.CSS --- */
+
+.certifications-section {
+    padding: 5rem 0 2rem 0;
+    width: 100%;
+    position: relative;
+}
+
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Clean 3-column layout structure grid */
+    gap: 2rem;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+/* On massive screens, force the last 2 items to settle centered down nicely */
+@media (min-width: 901px) {
+    .cert-card:nth-child(4) { grid-column: 1 / 2; transform: translateX(50%); }
+    .cert-card:nth-child(5) { grid-column: 2 / 3; transform: translateX(50%); }
+}
+
+/* --- REPLACE THESE IN YOUR STYLE.CSS --- */
+
+.cert-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3; 
+    background-color: #121216; /* Dark background frame behind the image */
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    
+    /* Luxury inner safety padding buffer so certificates don't touch the borders */
+    padding: 12px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cert-image-bg {
+    width: 100%;
+    height: 100%;
+    
+    /* FIXED CONSTRAINTS: 
+       Changing to 'contain' forces the browser to shrink/scale the image 
+       down to fit entirely inside the container box without cropping anything. */
+    object-fit: contain; 
+    
+    border-radius: 2px;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure the zoom effect stays clean and doesn't cause overflow bugs */
+.cert-card:hover .cert-image-bg {
+    transform: scale(1.04); /* Kept elegant and slight so it stays within bounds */
+}
+
+/* THE SLIDE-UP INFO PANEL OVERLAY */
+/* --- REPLACE THIS SECTION IN YOUR STYLE.CSS --- */
+
+.cert-hover-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* CHANGED TO SOLID OPAQUE LUXURY BLACK:
+       Using a solid hex code instead of rgba or linear-gradients completely 
+       masks the certificate artwork underneath on hover, maximizing text legibility. */
+    background: #070708; 
+    
+    display: flex;
+    align-items: center; /* Vertically centers the text content inside the card */
+    padding: 2rem;
+    
+    /* Smooth slide-up transition engine */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure text elements within the card expand beautifully with rich spacing */
+.cert-info-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    text-align: left;
+}
+
+/* --- THE HOVER TRIGGER MACROS --- */
+.cert-card:hover {
+    border-color: #c8b273;
+    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.05);
+}
+
+
+.cert-card:hover .cert-hover-overlay {
+    opacity: 1;
+    transform: translateY(0); /* Slides content upward into clean view */
+}
+
+/* TEXT STACK ARGUMENTS */
+
+.cert-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.3;
+}
+
+.cert-subtitle {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: #c8b273;
+    letter-spacing: 1.5px;
+}
+
+.cert-desc-text {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #a0a0a5;
+    font-weight: 300;
+    margin-top: 0.4rem;
+}
+
+/* Mobile responsive tracking alignments */
+@media (max-width: 900px) {
+    .certifications-grid { grid-template-columns: 1fr; }
+    .cert-card:nth-child(4), .cert-card:nth-child(5) { grid-column: auto; transform: none; }
+}
+
+/* --- ADD THESE RULES TO YOUR STYLE.CSS --- */
+
+/* Arranges both interactive buttons beautifully side-by-side */
+
+/* Base button properties for the phone framework */
+.btn-phone {
+    position: relative;
+    min-width: 220px; /* Locks structural width so the box doesn't resize when numbers appear */
+}
+
+/* Injects the baseline text naturally */
+.btn-phone::before {
+    content: "Connect via Phone";
+    display: block;
+    transition: all 0.3s ease;
+}
+
+/* INTERACTIVE SWAP MECHANISM:
+   When hovered, reads the exact string inside 'data-phone' and injects it 
+   instantly, shifting the styling variables smoothly to your premium gold themes */
+.btn-phone:hover::before {
+    content: attr(data-phone);
+    letter-spacing: 1px; /* Slightly lower tracking so the digits fit perfectly */
+}
+

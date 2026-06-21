@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Luxury Brand Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@300;400;500;600;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="image.png">
+</head>
+<body>
+
+    <canvas id="revealCanvas"></canvas>
+
+    <div class="gold-line-accent"></div>
+
+    <div class="container">
+        <!-- UPDATE THE HEADER IN YOUR INDEX.HTML -->
+<header>
+    <!-- Logo turned into a clickable Home button -->
+    <a href="#" class="logo-link">
+        <div class="logo">PM</div>
+    </a>
+    <nav>
+    <a href="#about" class="active">My Story</a> <a href="#projects" class="active">Projects</a>
+    <a href="#experience" class="active">Experience</a><a href="#certifications" class="active">Certifications</a><a href="#contact" class="active">Contact</a> </nav>
+</header>
+
+        <section class="hero-container">
+    <div class="profile-quote-grid">
+    
+    <div class="hero-interactive-viewport">
+        
+        <div class="quote-interactive-wrapper base-layer">
+            <span class="origin-tag">Pratyusha Mokkapati </span>
+            <div class="quote-text-wrap">
+                <h1 class="quote-line">Where heritage</h1>
+                <h1 class="quote-line">meets modern clarity</h1>
+                <h1 class="quote-line">in luxury</h1>
+            </div>
+        </div>
+
+        <div class="quote-interactive-wrapper invert-layer" id="maskedLayer">
+            <span class="origin-tag global-white-text">Pratyusha Mokkapati</span>
+            <div class="quote-text-wrap">
+                <h1 class="quote-line global-black-text">Where heritage</h1>
+                <h1 class="quote-line global-black-text">meets modern clarity</h1>
+                <h1 class="quote-line global-black-text">in luxury</h1>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="profile-image-box">
+        <img src="your-photo.png" alt="Profile Photo" class="profile-photo-fallback">
+    </div>
+
+</div>
+
+    <div class="sub-hero-details">
+        <h2 class="emlyon-title">M.Sc. Luxury Management & Marketing <span class="school-label"><div class="target-tag">emlyon business school</div></span></h2>
+        <p class="hero-description">
+            Assisting legacy brands in navigating modern shifts across client experience and brand evolution. Luxury management student with global CRM experience.
+        </p>
+    </div>
+</section>
+<section id="about" class="about-section">
+    <h2 class="section-title">My Story</h2>
+    <div class="about-content-wrap">
+        <p class="about-paragraph">
+            Inspired by witnessing innovative products struggle to gain recognition despite their quality and impact, I transitioned from consulting to luxury marketing to understand how strong brands create lasting value. Through my work with an organic food startup and observing my father's biomedical innovations, I realized that exceptional products alone are not enough. Success depends on positioning, equity, storytelling, and the ability to build meaningful consumer connections. This interest led me to luxury, an industry that excels at creating desire and emotional resonance. Leveraging 3.8 years of experience at Deloitte in CRM and global customer engagement, I have a strong understanding of consumer behavior, brand strategy, digital marketing, and luxury market dynamics.
+        </p>
+    </div>
+</section>
+        <section id="projects">
+    <h2 class="section-title">Selected Case Studies</h2>
+    
+    <div class="projects-grid">
+        <div class="project-card-wrapper">
+            <div class="project-card-inner">
+                
+                <div class="card-front">
+                    <div class="project-meta">Fragment</div>
+                    <h3>An AI-Based Memory Perfume</h3>
+                    <p>
+                        Fragment is a sustainable luxury venture that transforms personal memories into bespoke fragrances using AI and artisanal French perfumery. Blending emotion, data, art, and science, each scent becomes a unique olfactive expression of a client's story.
+                    </p>
+                    <div class="tech-badges-wrap">
+                        <span class="tech-badge">Emotion</span>
+                        <span class="tech-badge">Olfactory Tech</span>
+                        <span class="tech-badge">Personalization</span>
+                    </div>
+                </div>
+                
+                <div class="card-back">
+                    <video class="card-video" src="Fragment.mp4" loop muted playsinline></video>
+                    <div class="audio-control-overlay">
+                        <span class="audio-icon">🔇 Click to Unmute</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="project-card-wrapper">
+            <div class="project-card-inner">
+                
+                <div class="card-front">
+                    <div class="project-meta">Richard Mille</div>
+                    <h3>Beyond Survival - Still ticking</h3>
+                    <p>
+                        Richard Mille positions itself as a symbol of unwavering stability in an increasingly chaotic world, where both external disruption and internal pressure have become everyday realities. By showcasing the watch enduring environmental extremes and human stress alike, the campaign elevates Richard Mille from a luxury timepiece to a powerful emblem of resilience, control, and reliability under pressure.
+                    </p>
+                    <div class="tech-badges-wrap">
+                        <span class="tech-badge">AI Art Direction</span>
+                        <span class="tech-badge">Campaign Strategy</span>
+                        <span class="tech-badge">Control</span>
+                    </div>
+                </div>
+                
+                <div class="card-back">
+                    <video class="card-video" src="Richard Mill.mp4" loop muted playsinline></video>
+                    <div class="audio-control-overlay">
+                        <span class="audio-icon">🔇 Click to Unmute</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="project-card-wrapper">
+            <div class="project-card-inner">
+                
+                <div class="card-front">
+                    <div class="project-meta">Aston Martin</div>
+                    <h3>The Chosen Moments</h3>
+                    <p>
+                        A privacy first storytelling experience that allows Aston Martin owners to intentionally capture and preserve meaningful driving moments as cinematic memories, entirely on their terms. With owner controlled recording, local storage, and no passive data collection, it reinforces Aston Martin's values of discretion, exclusivity, and emotional ownership.
+                    </p>
+                    <div class="tech-badges-wrap">
+                        <span class="tech-badge">Memories</span>
+                        <span class="tech-badge">Data</span>
+                        <span class="tech-badge">Descretion</span>
+                    </div>
+                </div>
+                
+                <div class="card-back">
+                    <video class="card-video" src="Aston Martin.mp4" loop muted playsinline></video>
+                    <div class="audio-control-overlay">
+                        <span class="audio-icon">🔇 Click to Unmute</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>        
+
+        <div class="project-card-wrapper">
+            <div class="project-card-inner">
+                
+                <div class="card-front">
+                    <div class="project-meta">Pagani Automobili</div>
+                    <h3>XR Driven Co Creation Experience</h3>
+                    <p>
+                        An immersive XR luxury experience that engages all five senses, allowing clients to design and experience their Pagani through mixed reality, haptics, spatial audio, adaptive scent, and biometric personalization. The journey extends beyond delivery with a private XR vault that preserves the car’s creation story, craftsmanship, and the client’s unique sensorial profile.
+                    </p>
+                    <div class="tech-badges-wrap">
+                        <span class="tech-badge">Immersive Ownership</span>
+                        <span class="tech-badge">XR Legacy</span>
+                        <span class="tech-badge">Creation Vault</span>
+                    </div>
+                </div>
+                
+                <div class="card-back">
+                    <video class="card-video" src="Pagani.mp4" loop playsinline></video>
+                    <div class="audio-control-overlay">
+                        <span class="audio-icon">🔇 Click to Unmute</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="project-card-wrapper">
+            <div class="project-card-inner">
+                
+                <div class="card-front">
+                    <div class="project-meta">Cartier</div>
+                    <h3>The Eternal Time</h3>
+                    <p>Developed the "Eternal Time" capsule collection concept for Cartier, reimagining time as an object to be preserved rather than measured through four limited edition decorative pieces. Created the product concept, pricing strategy, and economic feasibility framework, positioning the collection as a brand equity and client engagement initiative that extends Cartier's timeless craftsmanship beyond jewellery and watches.</p>
+                    <div class="tech-badges-wrap">
+                        <span class="tech-badge">Timeless</span>
+                        <span class="tech-badge">Brand extension</span>
+                        <span class="tech-badge">Craftsmanship</span>
+                    </div>
+                </div>
+                
+                <div class="card-back">
+                    <img class="card-video" src="Cartier_Strategy.jpg"></img>
+                </div>
+                
+            </div>
+        </div>        
+
+        <div class="project-card-wrapper">
+            <div class="project-card-inner">
+                
+                <div class="card-front">
+                    <div class="project-meta">Hilton</div>
+                    <h3>Marketing Strategies</h3>
+                    <p>
+Developed a strategic marketing proposal for DoubleTree by Hilton focused on increasing restaurant visibility both physically and digitally, strengthening local partnerships, and enhancing guest engagement through experiential and digital initiatives. Several recommendations were positively received by the management team and are now being implemented as part of the property's ongoing marketing efforts
+                    </p>
+                    <div class="tech-badges-wrap">
+                        <span class="tech-badge">Engagement</span>
+                        <span class="tech-badge">Experiential Initiatives</span>
+                        <span class="tech-badge">Strategic Recommendations</span>
+                    </div>
+                </div>
+                
+                <div class="card-back">
+                    <img class="card-video" src="Hilton.png" loop playsinline></img>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</section>
+<section id="experience" class="experience-section">
+    <h2 class="section-title">Professional Journey</h2>
+    
+    <div class="experience-grid">
+        
+        <div class="experience-card">
+            <div class="exp-header-row">
+                <div class="company-logo-frame">
+                    <img src="deloitte.png" alt="Deloitte Logo" class="company-logo">
+                </div>
+                <div class="exp-meta-block">
+                    <span class="company-name">Deloitte</span>
+                    <h3 class="role-title">CRM & Global Customer Engagement Analyst</h3>
+                    <span class="exp-timeline">Jan 2022 - Aug 2025</span>
+                </div>
+            </div>
+            
+            <div class="view-exp-toggle">
+                <span class="toggle-text">View Experience</span>
+                <span class="toggle-arrow">→</span>
+            </div>
+            
+            <div class="exp-drawer-panel">
+                <p class="drawer-paragraph">
+Led global CRM and customer engagement initiatives for industry-leading organizations, including Eli Lilly & Co. and Moderna, where I contributed to building an omnichannel contact center from the ground up. Leveraged customer insights, audience segmentation, and campaign strategy to deliver personalized experiences across global markets.
+Expertise in CRM operations, lifecycle marketing, omnichannel campaign management, stakeholder collaboration, and crafting seamless customer journeys across email, phone, and SMS touchpoints.             
+                 </p>
+            </div>
+        </div>
+
+        <div class="experience-card">
+            <div class="exp-header-row">
+                <div class="company-logo-frame">
+                    <img src="andhragreens.png" alt="AndhraGreens Logo" class="company-logo">
+                </div>
+                <div class="exp-meta-block">
+                    <span class="company-name">AndhraGreens</span>
+                    <h3 class="role-title">Content Writer and Digital Marketing Representative</h3>
+                    <span class="exp-timeline">Dec 2020 - Feb 2021</span>
+                </div>
+            </div>
+            
+            <div class="view-exp-toggle">
+                <span class="toggle-text">View Experience</span>
+                <span class="toggle-arrow">→</span>
+            </div>
+            
+            <div class="exp-drawer-panel">
+                <p class="drawer-paragraph">
+Supported brand communication and digital engagement strategies through content creation, storytelling, and audience-focused campaigns that reinforced brand identity.
+
+Built a foundation in luxury marketing principles, consumer engagement, and creating meaningful brand experiences through strategic content.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+<section id="certifications" class="certifications-section">
+    <h2 class="section-title">Credentials & Certifications</h2>
+    
+    <div class="certifications-grid">
+        
+        <div class="cert-card">
+            <img src="cert1.png" alt="Certification Showcase" class="cert-image-bg">
+            <div class="cert-hover-overlay">
+                <div class="cert-info-stack">
+                    <h3 class="cert-title">French Language Proficiency (CEFR A2)</h3>
+                    <h4 class="cert-subtitle">Alliance Française de Hyderabad</h4>
+                    <p class="cert-desc-text">
+                        Attained certified A2 operational proficiency in French language systems, focusing on professional integration metrics. Currently advancing through B1 level mastery to facilitate seamless high-end European luxury corporate communication.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cert-card">
+            <img src="cert2.png" alt="Certification Showcase" class="cert-image-bg">
+            <div class="cert-hover-overlay">
+                <div class="cert-info-stack">
+                    <h3 class="cert-title">Creation, Branding & Client Experience</h3>
+                    <h4 class="cert-subtitle">LVMH Inside Maison Architecture</h4>
+                    <p class="cert-desc-text">
+                       Specialized in heritage brand valuation, digital omnichannel retail ecosystems, and premium customer journey mappings. Analyzed deep-rooted luxury positioning models directly pioneered by LVMH ecosystem curators.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cert-card">
+            <img src="cert3.png" alt="Certification Showcase" class="cert-image-bg">
+            <div class="cert-hover-overlay">
+                <div class="cert-info-stack">
+                    <h3 class="cert-title">Management of Fashion and Luxury Companies</h3>
+                    <h4 class="cert-subtitle">Università Bocconi</h4>
+                    <p class="cert-desc-text">
+                       Evaluated strategic management frameworks, product life-cycle developments, and brand identity preservation parameters. Mastered critical Italian marketing methodologies utilized to scale competitive luxury enterprises globally.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cert-card">
+            <img src="cert4.png" alt="Certification Showcase" class="cert-image-bg">
+            <div class="cert-hover-overlay">
+                <div class="cert-info-stack">
+                    <h3 class="cert-title">Brand Management: Aligning Business, Brand and Behaviour</h3>
+                    <h4 class="cert-subtitle">University of London</h4>
+                    <p class="cert-desc-text">
+Developed strategic architectures designed to synthesize corporate behavior models directly with consumer brand equity. Focused on multi-tier identity frameworks ensuring long-term positioning health and organizational value alignment.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cert-card">
+            <img src="cert5.png" alt="Certification Showcase" class="cert-image-bg">
+            <div class="cert-hover-overlay">
+                <div class="cert-info-stack">
+                    <h3 class="cert-title">Negotiation, Mediation and Conflict Resolution Specialization</h3>
+                    <h4 class="cert-subtitle">ESSEC Business School</h4>
+                    <p class="cert-desc-text">
+Mastered high-stakes international commercial dispute resolution, mediation methodologies, and strategic relationship management. Engineered advanced communication frameworks designed to stabilize and scale global partner networks.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<section id="contact">
+        <footer id="about" class="footer-banner">
+            <div class="footer-text">
+                <h3>Let's Connect</h3>
+                <p>Available for internship roles and strategic discussions within the LVMH Maison architecture.</p>
+            </div>
+            <div class="footer-buttons-group">
+            <a href="mailto:pratyusha.mokkapati@edu.em-lyon.com" style="text-decoration: none;">
+                <button class="btn-contact">Connect via Email</button>
+            </a>
+            <a href="https://www.linkedin.com/in/pratyushamokk/" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+                <button class="btn-contact">Connect via LinkedIn</button>
+            </a>
+            <button class="btn-contact btn-phone" data-phone="+33 7 45 30 18 38"></button>
+            </div>
+        </footer>
+    </div>
+</section>
+    <script src="script.js"></script>
+</body>
+</html>
