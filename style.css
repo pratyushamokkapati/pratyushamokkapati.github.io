@@ -513,6 +513,34 @@ nav a.active { color: #C8B273; }
         gap: 1rem;              /* Tighter spacing built explicitly for touch targets */
     }
 
+    /* --- ADD THIS INSIDE YOUR @media (max-width: 768px) BLOCK IN STYLE.CSS --- *
+    
+    /* MASTER FIX FOR THE LOGO TEXT OVERFLOW */
+    .logo {
+        width: auto;             /* Disables the restrictive 68px width constraint */
+        height: auto;            /* Allows natural height boundary */
+        min-height: 48px;        /* Maintains a clean structural footprint */
+        padding: 0.4rem 1.2rem;  /* Converts the layout into an elegant horizontal luxury pill shape */
+        border-radius: 30px;     /* Smoothly rounds the corners of the adaptive pill shape */
+        font-size: 0.9rem;       /* Subtly scales down font size so it sits perfectly on one line */
+        white-space: nowrap;     /* ABSOLUTE FORCE: Prevents your name from breaking into two lines */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+    }
+
+    .logo-icon {
+        font-size: 0.8rem;       /* Equitably scales down the crown/sparkle icon to fit */
+    }
+    
+    /* --- Optional: Adjust Header navigation container to accommodate the full name --- */
+    header {
+        padding: 1rem;
+        flex-direction: column;  /* Stacks branding above links if device viewport gets critically narrow */
+        gap: 0.8rem;
+    }
+
     /* 4. Normalize individual contact buttons */
     .btn-contact {
         width: 100%;            /* Forces full width utility */
